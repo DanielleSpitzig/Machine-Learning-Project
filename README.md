@@ -2,6 +2,8 @@
 
 This is a project done in fulfillment for the final project in the Introduction to Machine Learning course (CS 480/ 680) at the University of Waterloo.
 
+This cide is written in Python 3 and Google Colab was used for their GPU runtime option for the training of the neural networks.
+
 This project was looking at the implementation of ABC and PSO as optimization techniques for deep neural networks (DNNs). The implementations were run on 3 data sets of varying sizes, each with a different amount of hidden layers.
 
 It can be shown that the implementations worked best on the smaller data sets, even with more hidden layers
