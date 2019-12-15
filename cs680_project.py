@@ -598,3 +598,32 @@ print(mnist_ABC_time, mnist_ABC_acc)
 mnist_PSO_time, mnist_PSO_acc = DeepNN(Xtrain, Xtest, y_train, y_test, classes, hidden, opt = "PSO", max_iter = 100, pop = 20)
 
 print(mnist_PSO_acc, mnist_PSO_time)
+
+from sklearn import datasets
+
+iris = datasets.load_iris()
+
+X = iris.data
+y = iris.target
+
+#split the data up - take 20% for testing and the other 80% is used for training
+ind = np.random.permutation(X.shape[0])
+num = X.shape[0] - int(X.shape[0]/5)
+training_idx, test_idx = ind[:num], ind[num:]
+X_train, X_test = X[training_idx,:], X[test_idx,:]
+
+X_train = X_train/X_train.max()
+X_test = X_test/X_test.max()
+
+Ytrain, Ytest = y[training_idx], y[test_idx]
+
+classes = 3
+hidden = 100
+
+iris_ABC_time, iris_ABC_acc = DeepNN(X_train, X_test, Ytrain, Ytest, classes, hidden, opt = 'ABC', max_iter = 200, pop = 50, bound = (-1, 1))
+
+print(iris_ABC_time, iris_ABC_acc)
+
+iris_PSO_time, iris_PSO_acc = DeepNN(X_train, X_test, Ytrain, Ytest, classes, hidden, opt = 'PSO', max_iter = 200, pop = 50, bound = (-1, 1))
+
+print(iris_PSO_time, iris_PSO_acc)
